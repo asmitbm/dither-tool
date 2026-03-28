@@ -1,0 +1,325 @@
+.dither-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Sidebars (shared) — shadow borders blend better (Emil: shadows for borders) */
+.dither-sidebar {
+  width: 300px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  box-shadow: inset -1px 0 0 0 var(--border);
+  background: var(--card);
+}
+
+.dither-sidebar-right {
+  width: 300px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  box-shadow: inset 1px 0 0 0 var(--border);
+  background: var(--card);
+}
+
+.dither-sidebar-title {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Upload area */
+.dither-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Control sections */
+.dither-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dither-section-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+/* Slider row */
+.dither-slider-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dither-slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dither-slider-label {
+  font-size: 13px;
+  color: var(--muted-foreground);
+}
+
+.dither-slider-value {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted-foreground);
+}
+
+/* Checkbox row — entire row clickable (Emil: no dead zones) */
+.dither-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.dither-checkbox-label {
+  font-size: 13px;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  flex: 1;
+}
+
+/* Helper text */
+.dither-hint {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+  opacity: 0.7;
+}
+
+/* Spacer */
+.dither-spacer {
+  flex: 1;
+}
+
+/* Export area — button press feel (Emil: scale on active) */
+.dither-export {
+  display: flex;
+  gap: 8px;
+}
+
+.dither-export > * {
+  flex: 1;
+}
+
+.dither-export button:active {
+  transform: scale(0.97);
+}
+
+/* Stats */
+.dither-stats {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Main content — split panels */
+.dither-main {
+  flex: 1;
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* Dither output panel — centers fixed-size canvas */
+.dither-panel-dither {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 0;
+  position: relative;
+  padding: 48px 24px 24px;
+}
+
+/* Live render panel — fills with canvas */
+.dither-panel-live {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.dither-panel-divider {
+  width: 1px;
+  align-self: stretch;
+  background: rgba(0, 0, 0, 0.12);
+  flex-shrink: 0;
+}
+
+/* Absolute label for the dither output panel */
+.dither-panel-label {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Header bar inside live render panel */
+.dither-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 20px;
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.dither-panel-header-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  white-space: nowrap;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.dither-canvas-dither {
+  image-rendering: pixelated;
+  max-width: 100%;
+  max-height: calc(100vh - 120px);
+  object-fit: contain;
+  user-select: none;
+}
+
+/* Container fills remaining panel space; canvas is sized to match via JS */
+.dither-canvas-container {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+/* Stats overlay — centered below the header, above the canvas */
+.dither-canvas-stats {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Emil: touch-action none for custom canvas gestures, user-select none for illustrations */
+.dither-canvas-live {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: none;
+  touch-action: none;
+  user-select: none;
+}
+
+/* Render scale control — lives in the header */
+.dither-render-scale {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.dither-render-scale-label {
+  font-size: 12px;
+  color: var(--muted-foreground);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.dither-render-scale-slider {
+  width: 120px;
+}
+
+.dither-render-scale-value {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted-foreground);
+  user-select: none;
+}
+
+/* Color input */
+.dither-color-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dither-color-input {
+  width: 32px;
+  height: 32px;
+  box-shadow: 0 0 0 1px var(--border);
+  border: none;
+  border-radius: 6px;
+  padding: 2px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.dither-color-input::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.dither-color-input::-webkit-color-swatch {
+  border: none;
+  border-radius: 4px;
+}
+
+.dither-color-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Reduced motion (Emil: every animation needs reduced-motion support) */
+@media (prefers-reduced-motion: reduce) {
+  .dither-canvas-live {
+    cursor: default;
+  }
+  .dither-export button:active {
+    transform: none;
+  }
+}
+
+/* Hover-only effects (Emil: disable hover on touch devices) */
+@media (hover: hover) and (pointer: fine) {
+  .dither-canvas-live {
+    cursor: none;
+  }
+}
+
+/* Hidden */
+.dither-hidden {
+  display: none;
+}

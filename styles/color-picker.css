@@ -1,0 +1,426 @@
+.cp-root {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Mode toggle (Solid / Gradient) */
+.cp-mode-toggle {
+  display: flex;
+  gap: 2px;
+  background: var(--muted);
+  border-radius: 6px;
+  padding: 2px;
+}
+
+/* Emil: specify exact transition properties, never 'all' */
+.cp-mode-btn {
+  flex: 1;
+  padding: 5px 0;
+  font-size: 12px;
+  font-weight: 500;
+  border: none;
+  background: transparent;
+  color: var(--muted-foreground);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease, box-shadow 150ms ease;
+}
+
+.cp-mode-btn-active {
+  background: var(--background);
+  color: var(--foreground);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* Emil: scale on active for press feel */
+.cp-mode-btn:active {
+  transform: scale(0.97);
+}
+
+/* Saturation-Value 2D picker — user-select none for illustrations (Emil) */
+.cp-sv-area {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  cursor: crosshair;
+  user-select: none;
+  overflow: hidden;
+  touch-action: none;
+}
+
+.cp-sv-cursor {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Hue bar — touch-action none for custom drag (Emil) */
+.cp-hue-bar {
+  position: relative;
+  width: 100%;
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(
+    to right,
+    hsl(0, 100%, 50%),
+    hsl(60, 100%, 50%),
+    hsl(120, 100%, 50%),
+    hsl(180, 100%, 50%),
+    hsl(240, 100%, 50%),
+    hsl(300, 100%, 50%),
+    hsl(360, 100%, 50%)
+  );
+  cursor: pointer;
+  user-select: none;
+  touch-action: none;
+}
+
+/* Opacity bar */
+.cp-opacity-bar {
+  position: relative;
+  width: 100%;
+  height: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  touch-action: none;
+}
+
+/* Shared bar cursor */
+.cp-bar-cursor {
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Hex + Opacity input row */
+.cp-hex-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cp-hex-label {
+  font-size: 11px;
+  color: var(--muted-foreground);
+  flex-shrink: 0;
+}
+
+/* Emil: shadow border blends better */
+.cp-hex-input-wrap {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  background: var(--muted);
+  border-radius: 6px;
+  padding: 5px 8px;
+  gap: 2px;
+}
+
+.cp-hex-hash {
+  font-size: 12px;
+  color: var(--muted-foreground);
+  flex-shrink: 0;
+}
+
+/* Emil: input font-size 16px to prevent iOS zoom */
+.cp-hex-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-family: var(--font-mono);
+  color: var(--foreground);
+  width: 100%;
+  text-transform: uppercase;
+}
+
+.cp-opacity-input-wrap {
+  display: flex;
+  align-items: center;
+  background: var(--muted);
+  border-radius: 6px;
+  padding: 5px 8px;
+  gap: 2px;
+  width: 58px;
+  flex-shrink: 0;
+}
+
+.cp-opacity-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-family: var(--font-mono);
+  color: var(--foreground);
+  width: 100%;
+  -moz-appearance: textfield;
+}
+
+.cp-opacity-input::-webkit-outer-spin-button,
+.cp-opacity-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.cp-opacity-pct {
+  font-size: 11px;
+  color: var(--muted-foreground);
+  flex-shrink: 0;
+}
+
+/* Gradient section — shadow border (Emil) */
+.cp-gradient-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 10px;
+  box-shadow: 0 -1px 0 0 var(--border);
+}
+
+.cp-gradient-type-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.cp-type-select {
+  flex: 1;
+  height: 30px !important;
+  font-size: 12px !important;
+}
+
+.cp-angle-wrap {
+  display: flex;
+  align-items: center;
+  background: var(--muted);
+  border-radius: 6px;
+  padding: 5px 8px;
+  gap: 2px;
+  width: 58px;
+  flex-shrink: 0;
+}
+
+.cp-angle-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-family: var(--font-mono);
+  color: var(--foreground);
+  width: 100%;
+  -moz-appearance: textfield;
+}
+
+.cp-angle-input::-webkit-outer-spin-button,
+.cp-angle-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.cp-angle-unit {
+  font-size: 11px;
+  color: var(--muted-foreground);
+  flex-shrink: 0;
+}
+
+/* Gradient preview bar with stop handles */
+.cp-gradient-bar-wrap {
+  padding: 6px 0;
+}
+
+/* Emil: shadow border instead of border */
+.cp-gradient-bar {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px var(--border);
+}
+
+.cp-stop-handle {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border: none;
+  box-shadow: 0 0 0 2px var(--border), 0 1px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 2px;
+  transform: translate(-50%, -50%);
+  cursor: grab;
+  touch-action: none;
+}
+
+.cp-stop-handle:active {
+  cursor: grabbing;
+}
+
+.cp-stop-active {
+  box-shadow: 0 0 0 2px white, 0 0 0 3.5px var(--ring), 0 1px 3px rgba(0, 0, 0, 0.25);
+  z-index: 1;
+}
+
+/* Stops header */
+.cp-stops-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cp-stops-title {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+/* Emil: 44px minimum tap target via padding */
+.cp-stops-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: none;
+  background: var(--muted);
+  color: var(--muted-foreground);
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+/* Expand tap target to 44px (Emil: tap targets) */
+.cp-stops-add::before {
+  content: '';
+  position: absolute;
+  inset: -11px;
+}
+
+/* Emil: hover only on hover-capable devices */
+@media (hover: hover) and (pointer: fine) {
+  .cp-stops-add:hover {
+    color: var(--foreground);
+    background: var(--accent);
+  }
+}
+
+.cp-stops-add:active {
+  transform: scale(0.92);
+}
+
+/* Stops list */
+.cp-stops-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cp-stop-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 150ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cp-stop-row:hover {
+    background: var(--muted);
+  }
+}
+
+.cp-stop-row-active {
+  background: var(--muted);
+}
+
+.cp-stop-pos {
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted-foreground);
+  width: 34px;
+  flex-shrink: 0;
+}
+
+/* Emil: shadow border instead of border */
+.cp-stop-swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  border: none;
+  box-shadow: 0 0 0 1px var(--border);
+  flex-shrink: 0;
+}
+
+.cp-stop-hex {
+  flex: 1;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--foreground);
+  min-width: 0;
+}
+
+/* Emil: 44px tap target via pseudo-element */
+.cp-stop-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  color: var(--muted-foreground);
+  border-radius: 3px;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.cp-stop-remove::before {
+  content: '';
+  position: absolute;
+  inset: -12px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cp-stop-remove:hover:not(:disabled) {
+    background: var(--destructive);
+    color: white;
+  }
+}
+
+.cp-stop-remove:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Reduced motion (Emil: every animation needs this) */
+@media (prefers-reduced-motion: reduce) {
+  .cp-mode-btn,
+  .cp-stops-add,
+  .cp-stop-row,
+  .cp-stop-remove {
+    transition: none;
+  }
+  .cp-mode-btn:active,
+  .cp-stops-add:active {
+    transform: none;
+  }
+}
